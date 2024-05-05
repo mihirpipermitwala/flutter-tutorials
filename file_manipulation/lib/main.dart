@@ -4,11 +4,15 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {
-  runApp(const MyFileManipulationApp());
+  runApp(
+    const MyFileManipulationApp(),
+  );
 }
 
 class MyFileManipulationApp extends StatefulWidget {
-  const MyFileManipulationApp({Key? key}) : super(key: key);
+  const MyFileManipulationApp({
+    super.key,
+  });
 
   @override
   State<MyFileManipulationApp> createState() => _MyFileManipulationAppState();
@@ -22,26 +26,34 @@ class _MyFileManipulationAppState extends State<MyFileManipulationApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('File Manipulation Example'),
+          title: const Text(
+            'File Manipulation Example',
+          ),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: const Text('Write and Read File with Bytes'),
+                child: const Text(
+                  'Write and Read File with Bytes',
+                ),
                 onPressed: () {
                   writeAndReadFileBytes();
                 },
               ),
               ElevatedButton(
-                child: const Text('Write and Read File with String'),
+                child: const Text(
+                  'Write and Read File with String',
+                ),
                 onPressed: () {
                   writeAndReadFileString();
                 },
               ),
               ElevatedButton(
-                child: const Text('Write and Read File with Lines'),
+                child: const Text(
+                  'Write and Read File with Lines',
+                ),
                 onPressed: () {
                   writeAndReadFileLines();
                 },
@@ -54,51 +66,81 @@ class _MyFileManipulationAppState extends State<MyFileManipulationApp> {
   }
 
   Future<void> writeToBytes(File file) async {
-    List<int> bytes = [72, 101, 108, 108, 111]; // "Hello" in ASCII
-    await file.writeAsBytes(bytes);
+    List<int> bytes = [
+      72,
+      101,
+      108,
+      108,
+      111,
+    ]; // "Hello" in ASCII
+    await file.writeAsBytes(
+      bytes,
+    );
   }
 
   Future<void> writeToString(File file) async {
     String data = 'Hello, World!';
-    await file.writeAsString(data);
+    await file.writeAsString(
+      data,
+    );
   }
 
   Future<void> writeToLines(File file) async {
     String data = 'Hello\nWorld\nflutter';
-    await file.writeAsString(data);
+    await file.writeAsString(
+      data,
+    );
   }
 
   Future<void> writeAndReadFileBytes() async {
     await requestPermission();
     String directoryPath = await getDirectoryPath();
 
-    File fileBytes = File('$directoryPath/exampleBytes.txt');
-    await writeToBytes(fileBytes);
+    File fileBytes = File(
+      '$directoryPath/exampleBytes.txt',
+    );
+    await writeToBytes(
+      fileBytes,
+    );
 
     //Reading A File with readAsBytes
-    await readAsBytes(fileBytes);
+    await readAsBytes(
+      fileBytes,
+    );
   }
 
   Future<void> writeAndReadFileString() async {
     await requestPermission();
     String directoryPath = await getDirectoryPath();
 
-    File fileString = File('$directoryPath/exampleString.txt');
-    await writeToString(fileString);
+    File fileString = File(
+      '$directoryPath/exampleString.txt',
+    );
+    await writeToString(
+      fileString,
+    );
 
     // Reading A File with readAsString
-    await readAsString(fileString);
+    await readAsString(
+      fileString,
+    );
   }
 
   Future<void> writeAndReadFileLines() async {
     await requestPermission();
     String directoryPath = await getDirectoryPath();
 
-    File fileLines = File('$directoryPath/exampleLines.txt');
-    await writeToLines(fileLines);
+    File fileLines = File(
+      '$directoryPath/exampleLines.txt',
+    );
+    await writeToLines(
+      fileLines,
+    );
 
     // Reading A File with readAsLines
-    await readAsLines(fileLines);
+    await readAsLines(
+      fileLines,
+    );
   }
 
   Future<void> readAsLines(File file) async {
